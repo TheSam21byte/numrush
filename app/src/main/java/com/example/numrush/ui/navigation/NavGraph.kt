@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.numrush.ui.GameScreen
 import com.example.numrush.ui.MainScreen
+import com.example.numrush.ui.ScoreScreen
 
 @Composable
 fun AppNavGraph(navController: NavHostController){
@@ -19,7 +20,17 @@ fun AppNavGraph(navController: NavHostController){
         }
 
         composable(Routes.GAME) {
-            GameScreen()
+            GameScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(Routes.SCOREBOARD){
+            ScoreScreen(
+                onNavigateBack = { navController.popBackStack()}
+            )
         }
     }
 }

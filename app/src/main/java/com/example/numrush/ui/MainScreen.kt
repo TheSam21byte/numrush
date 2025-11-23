@@ -20,16 +20,15 @@ import com.example.numrush.ui.navigation.Routes
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-    // Colores definidos directamente
-
+    // Colores definidos
     val background = Color(0xFF18222F)
     val primaryText = Color(0xFFEADFA1)
     val secondaryText = Color(0xFFBFC7D1)
     val primaryButton = Color(0xFFC9B560)
     val secondaryButton = Color(0xFF546A82)
+    val hardModeButton = Color(0xFFD9534F)
 
     // Box Principal
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -46,7 +45,6 @@ fun MainScreen(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Header principal
             Text(
                 text = "NumRush",
                 fontSize = 42.sp,
@@ -54,7 +52,6 @@ fun MainScreen(navController: NavHostController) {
                 color = primaryText
             )
 
-            // Subtítulo divertido
             Text(
                 text = "¡Adivina el número secreto!",
                 fontSize = 18.sp,
@@ -63,7 +60,6 @@ fun MainScreen(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Icono del app
             Image(
                 painter = painterResource(id = R.mipmap.ic_launcher_foreground),
                 contentDescription = "App Icon",
@@ -73,7 +69,7 @@ fun MainScreen(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Botón principal
+            // Botón: Empezar ahora (Modo Estándar)
             Button (
                 onClick = {
                     navController.navigate(Routes.GAME)
@@ -85,27 +81,33 @@ fun MainScreen(navController: NavHostController) {
                     .fillMaxWidth()
                     .height(55.dp)
             ) {
-                Text(text = "Empezar ahora", fontSize = 18.sp, color = Color.White)
+                Text(text = "Empezar ahora (1-100)", fontSize = 18.sp, color = Color.White)
             }
 
 
-            // Botón modo difícil (comentado)
-//            Button(
-//                onClick = {},
-//                colors = ButtonDefaults.buttonColors(
-//                    containerColor = Color(0xFFD9534F)
-//                ),
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(55.dp)
-//            ) {
-//                Text(text = "Modo Difícil", fontSize = 18.sp, color = Color.White)
-//            }
-
-
-            // Botón tabla de puntuaciones
+            /* Botón: Modo Difícil (Descomentado y adaptado)
             Button(
-                onClick = {},
+                onClick = {
+                    // ASUMIDO: Si tienes Routes.HARD_GAME definido, úsalo aquí.
+                    // Si no, navega al modo estándar temporalmente.
+                    // navController.navigate(Routes.HARD_GAME)
+                    navController.navigate(Routes.GAME) // Usado como placeholder
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = hardModeButton // Color rojo distintivo
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(55.dp)
+            ) {
+                Text(text = "Modo Difícil (1-1000)", fontSize = 18.sp, color = Color.White)
+            }
+                */
+
+            Button(
+                onClick = {
+                    navController.navigate(Routes.SCOREBOARD)
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = secondaryButton
                 ),
@@ -115,7 +117,7 @@ fun MainScreen(navController: NavHostController) {
             ) {
                 Text(text = "Tabla de puntuaciones", fontSize = 16.sp, color = Color.White)
             }
+
         }
     }
 }
-
