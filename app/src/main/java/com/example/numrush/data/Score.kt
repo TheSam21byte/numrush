@@ -9,6 +9,8 @@ import java.util.Locale
 data class Score(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
 
+    val name: String,
+
     val attempts: Int,
 
     val timestamp: Long = System.currentTimeMillis()

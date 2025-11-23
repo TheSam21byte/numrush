@@ -21,6 +21,10 @@ class GameLogic {
         return attempts
     }
 
+    fun getSecretNumber(): Int {
+        return secretNumber
+    }
+
     fun reset(){
         secretNumber = Random.nextInt(1, 101)
         attempts = 0

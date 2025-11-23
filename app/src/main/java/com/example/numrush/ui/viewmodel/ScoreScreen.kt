@@ -28,10 +28,6 @@ fun ScoreScreen(
 ) {
     val background = Color(0xFF18222F)
     val primaryText = Color(0xFFEADFA1)
-
-    // --- MAGIA DE ROOM ---
-    // Convertimos el flujo de la base de datos en un Estado que Compose entiende.
-    // initial = emptyList() significa que empieza vacío mientras carga.
     val scores by viewModel.topScores.collectAsState(initial = emptyList())
 
     Box(
@@ -83,9 +79,31 @@ fun ScoreItem(rank: Int, score: Score) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("#$rank", color = Color(0xFFEADFA1), fontWeight = FontWeight.Bold, fontSize = 20.sp)
-            Column {
-                Text("${score.attempts} Intentos", color = Color.White, fontWeight = FontWeight.Bold)
+            // Posición y Nombre del Jugador
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    "#$rank",
+                    color = Color(0xFFEADFA1),
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 20.sp
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Text(
+                    text = score.name,
+                    color = Color.White,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 18.sp
+                )
+            }
+            Spacer(modifier = Modifier.width(16.dp))
+
+            // Intentos y Fecha
+            Column(horizontalAlignment = Alignment.End) {
+                Text(
+                    "${score.attempts} Intentos",
+                    color = Color(0xFFC9B560),
+                    fontWeight = FontWeight.Bold
+                )
                 Text(score.getFormattedDate(), color = Color.Gray, fontSize = 12.sp)
             }
         }
