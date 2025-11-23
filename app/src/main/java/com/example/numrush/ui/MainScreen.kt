@@ -105,7 +105,9 @@ fun MainScreen(navController: NavHostController) {
 
             // Botón tabla de puntuaciones
             Button(
-                onClick = {},
+                onClick = {
+                    navController.navigate(Routes.SCOREBOARD)
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = secondaryButton
                 ),
